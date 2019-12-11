@@ -224,6 +224,41 @@ ggplot(data = indiv_corsi_top5) +
   labs(y = "Number of Shot Attempts", x = "Player") +
   coord_flip()
 
+# 5. Which players drew the most penalties?
+
+
+
+
+
+
+# By examining the data, you can see that the player who DREW the penalty is event_player_2
+# We could also use group_by() and summarize() but it's often easier to use count() if it's a simple request
+# The sort = TRUE argument will sort in descending order
+
+penl <- PHI_tutorial_data %>%
+  filter(event_type == "PENL" & !is.na(event_player_2)) %>%
+  count(event_player_2, sort = TRUE)
+
+# 6. What was the faceoff win percentage for PHI in each game?
+
+
+
+
+
+
+# Filter down to just faceoffs and create a new variable for a PHI faceoff win
+# Group by game and summarize the number of faceoff wins as well as
+# the number of total faceoffs (which is just the total number of rows in the data frame)
+# And then calculate the win percentage
+
+faceoffs <- PHI_tutorial_data %>%
+  filter(event_type == "FAC") %>%
+  mutate(PHI_FO_win = ifelse(event_team == "PHI", 1, 0)) %>%
+  group_by(game_id) %>%
+  summarize(FO_wins = sum(PHI_FO_win),
+            FO_total = n()) %>%
+  mutate(FO_win_perc = FO_wins / FO_total)
+
 # How to scrape game data with the EW scraper----
 
 # Load the necessary packages and source the scraper (this will load all the necessary functions)
