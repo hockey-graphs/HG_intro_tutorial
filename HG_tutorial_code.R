@@ -14,7 +14,7 @@ library(tidyverse)
 # This is four Philadelphia Flyers games from November 
 
 PHI_tutorial_data <- 
-  read_csv("https://github.com/meghall06/HG_Tutorial/blob/master/PHI_tutorial_data.csv?raw=true")
+  read_csv("https://github.com/hockey-graphs/HG_intro_tutorial/blob/master/PHI_tutorial_data.csv?raw=true")
 
 # If you're using a file that's already on your computer (in the same folder as your project),
 # you can use this code instead
